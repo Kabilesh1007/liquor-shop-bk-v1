@@ -1,12 +1,15 @@
 package com.edex.liquor.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 @Table(name="login")
 @Entity
 public class Login {
 	@Id
+	@GeneratedValue
+	
 	private int id;
 	private String username;
 	private String email;
