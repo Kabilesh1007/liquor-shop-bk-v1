@@ -41,7 +41,7 @@ public class FileController {
 			byte[] bytes = uploadedFile.getBytes();
 
 			UUID uuid = UUID.randomUUID();
-			String uploadsLocation = "D:\\spring boot workspace\\liquor-shop\\src\\main\\resources\\uploads";
+			String uploadsLocation = "D:\\spring boot workspace\\liquor-shop\\src\\main\\resources\\uploads\\";
 			String fileLocation = uploadsLocation + uuid + uploadedFile.getOriginalFilename();
 			Path path = Paths.get(fileLocation);
 			Files.write(path, bytes);

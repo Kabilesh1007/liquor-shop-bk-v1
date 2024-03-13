@@ -50,5 +50,13 @@ public class LoginController {
       		.body(log);
 		
 	}
+	
+	@GetMapping("/getdetails")
+	public ResponseEntity<?> getMapping() {
+		List<Login> login = loginRepo.findAll();
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(login);
+	}
+	
 
 }
