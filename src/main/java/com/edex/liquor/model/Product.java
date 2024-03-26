@@ -14,19 +14,9 @@ public class Product {
 	private String name;
 	private String description;
 	private double price;
+	private String categories;
 	private String image;
 	private String video;
-	
-	public Product() {}
-
-	public Product(int id, String name, String description, double price) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-	}
-	
 	public int getId() {
 		return id;
 	}
@@ -51,23 +41,25 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
+	public String getCategories() {
+		return categories;
+	}
+	public void setCategories(String categories) {
+		this.categories = categories;
+	}
 	public String getImage() {
 		return image;
 	}
-
 	public void setImage(String image) {
 		this.image = image;
 	}
-
 	public String getVideo() {
 		return video;
 	}
-
 	public void setVideo(String video) {
 		this.video = video;
 	}
-	
+
 	
 
 }

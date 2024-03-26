@@ -20,4 +20,8 @@ public interface ProductRepo extends JpaRepository<Product, Integer>{
 	
 	@Query(value = "SELECT * FROM PRODUCTS WHERE name = :name", nativeQuery = true)
 	List<Product> findByName(String name);
+	
+	@Query(value = "SELECT * FROM PRODUCTS WHERE categories = :catogries", nativeQuery = true )
+    List<Product> findBycatogries(String catogries);
+	
 }

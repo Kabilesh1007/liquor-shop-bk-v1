@@ -36,12 +36,7 @@ public class ProductController {
 	
 	@PostMapping("/set")
 	public ResponseEntity<?> setProduct(@RequestBody Product product){
-	
-		
-		
-
 		Product savedEntity = productRepo.saveAndFlush(product);
-	
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(savedEntity);
 	}
@@ -50,21 +45,25 @@ public class ProductController {
 	public ResponseEntity<?> deleteProduct(@RequestParam int id){
 		Product product =  productRepo.findById(id).get();
 		productRepo.delete(product);
-	
-	
 		return ResponseEntity.status(HttpStatus.OK)
 				.body("Deleted");
 	}
-//	@GetMapping("/find/{id}")
-//	public ResponseEntity<?> findById(@PathVariable int id){
-//		
-//		Product product = productService.findById(id);
-//		
-//		return ResponseEntity
-//				.status(HttpStatus.OK)
-//				.body(product);
-//		
-//	}
+
+@GetMapping("/findbycatogries/{catogries}")
+    public ResponseEntity<?> findBycatogries(@PathVariable String catogries) {
+		System.out.println("===Category===="+catogries);
+        List<Product> product= productRepo.findBycatogries(catogries);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(product);
+}
+
+	
+	@GetMapping("/getfile")
+    public ResponseEntity<?> getFile(){
+        List<Product> products = productRepo.findAll();
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(products);
+    }
 	
 	@GetMapping("/findByPrice")
 	public ResponseEntity<?> findByPrice(@RequestParam double price){
@@ -81,47 +80,5 @@ public class ProductController {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(products);
 	}
-//	
-//	@GetMapping("/update")
-//	public ResponseEntity<?> updateProduct(@RequestParam int id, @RequestParam String name, @RequestParam String description, @RequestParam double price){
-//
-//		Product product = productService.updateProduct(id, name, description, price);
-//	
-//		return ResponseEntity.status(HttpStatus.OK)
-//				.body(product);
-//	}
-	
-	@GetMapping("/get")
-	public ResponseEntity<?> getProduct() {
-		Product p1 = new Product();
-		p1.setId(1);
-		p1.setName("Coffee");
-		p1.setDescription("Narasus Coffee");
-		p1.setPrice(105.50);
-//		return(p1);
-		
-//		return ResponseEntity.status(HttpStatus.OK)
-//		.body("Hello World");
-		
-		ResponseEntity.BodyBuilder builder = ResponseEntity.status(HttpStatus.OK);		
-		ResponseEntity response = builder.body(p1);
-		return(response);
-		
-	}
-	@GetMapping("/list")
-	public ResponseEntity<?>  getProducts() {
-		Product p1 = new Product(1, "Coffee" , "Narasus Coffee", 105.50);
-		Product p2 = new Product(2, "Tea", "Tajmahal Tea", 89.50);
-		Product p3 = new Product(3, "Oil", "Sunflower Oil", 205.50);
-		
-		
-		List<Product> list = new ArrayList<Product>();
-		list.add(p1);
-		list.add(p2);
-		list.add(p3);
-		return ResponseEntity.status(HttpStatus.NOT_FOUND)
-				.body(list);
-				
 
-	}
 }
